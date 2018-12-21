@@ -1,0 +1,30 @@
+<aura:component >
+    <aura:attribute name="boat" type="Boat__c" />
+    <aura:attribute name="boatReview" type="BoatReview__c" access="private"/>
+    <aura:attribute name="recordError" type="String" access="private" />
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+    <aura:registerEvent name="boatReviewAdded" type="c:BoatReviewAdded" />
+    <force:recordData aura:id="service"
+                      fields="Id,Name,Comment__c,Boat__c"
+                      targetFields="{!v.boatReview}" 
+                      mode="EDIT"
+                      recordUpdated="{!c.onRecordUpdated}"
+                      targetError="{!v.recordError}" />
+    <div class="slds-form slds-form_stacked">
+        <div class="slds-form-element">
+            <lightning:input name="title" label="Title"
+                             value="{!v.boatReview.Name}" />
+        </div>
+        <div class="slds-form-element">
+            <lightning:inputRichText aura:id="comment" label="Description"
+                                     value="{!v.boatReview.Comment__c}"
+                                     placeholder = "Comment" 
+                                     disabledCategories = "FORMAT_FONT" />
+        </div>
+        <div class="slds-form-element">
+            <c:FiveStarRating aura:id="FiveStarRating" value="{!v.boatReview.Rating__c}" readonly="false" />                                   
+        </div>
+        <lightning:button iconName="utility:save" onclick="{!c.onSave}" 
+                          label="Submit"/>
+    </div>
+</aura:component>

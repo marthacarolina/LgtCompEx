@@ -1,0 +1,15 @@
+<!-- This component contains the two components BoatSearchForm - where the user selects a Boat type
+    and clicks "search" to search for the boat types or clicks on new to add a boat of the type
+    selected in the type selection list 
+    the second component is BoatSearchResults which shows the results of the search (all the boats
+    matching the specific type) -->
+
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global" >
+    <aura:handler name="formsubmit" event="c:formsubmit" action="{!c.onFormSubmit}" />
+    <lightning:card title="Find a Boat"  class="slds-m-bottom_10px">
+        <c:BoatSearchForm/>
+    </lightning:card>
+    <lightning:card title="Matching Boats">
+        <c:BoatSearchResults aura:id="bsResultsCmp"/>
+    </lightning:card>
+</aura:component>

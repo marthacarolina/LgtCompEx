@@ -1,0 +1,1 @@
+<aura:event type="COMPONENT" description="signals to parent component when a boat review has been added" />
